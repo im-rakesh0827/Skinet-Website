@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "URKARaMRRm+I/NDf5F1cdULexkcCEQrS9bmM/ZsXKGNjPdYbkI3QQ9iMCsATYziaLrUgR62Hqdw+J+863rUfXg==",
+  "success": true,
+  "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/API.csproj",
+  "expectedPackageFiles": [
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
