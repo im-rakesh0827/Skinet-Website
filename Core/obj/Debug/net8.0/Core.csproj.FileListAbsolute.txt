@@ -9,3 +9,4 @@
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/Core/obj/Debug/net8.0/refint/Core.dll
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/Core/obj/Debug/net8.0/Core.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/Core/obj/Debug/net8.0/ref/Core.dll
+/Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/Core/obj/Debug/net8.0/Core.sourcelink.json

@@ -34,3 +34,4 @@
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/obj/Debug/net8.0/API.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/obj/Debug/net8.0/API.genruntimeconfig.cache
 /Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/obj/Debug/net8.0/ref/API.dll
+/Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/obj/Debug/net8.0/API.sourcelink.json
