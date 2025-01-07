@@ -9,11 +9,18 @@ namespace API.ProductsController;
 [Route("api/[controller]")]
 public class ProductsController : ControllerBase
 {
-
     private readonly StoreContext _context;
     public ProductsController(StoreContext context)
     {
-        this._context = context;
+        try
+        {
+            this._context = context;
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
     }
 
 
@@ -21,7 +28,17 @@ public class ProductsController : ControllerBase
     public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
     {
         // return Ok();
-        return await _context.Products.ToListAsync();
+        try
+        {
+            // return await _context.Products.OrderByDescending(x => x.Id).ToListAsync();
+            return await _context.Products.ToListAsync();
+
+
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
 
@@ -29,21 +46,37 @@ public class ProductsController : ControllerBase
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
 
-        var product = await _context.Products.FindAsync(id);
-        if (product == null)
+        try
         {
-            return NotFound();
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return product;
         }
-        return product;
+        catch (System.Exception)
+        {
+
+            throw;
+        }
     }
 
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct(Product product)
     {
-        _context.Products.Add(product);
-        await _context.SaveChangesAsync();
-        // return CreatedAtAction("GetProduct", new { id = product.Id }, product);
-        return product;
+        try
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+            // return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return product;
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
     }
 
     [HttpPut("{id:int}")]
@@ -67,7 +100,6 @@ public class ProductsController : ControllerBase
 
         catch (Exception)
         {
-
             throw;
         }
 
