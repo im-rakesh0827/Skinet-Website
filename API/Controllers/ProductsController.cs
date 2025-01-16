@@ -1,5 +1,6 @@
 using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,16 +9,18 @@ namespace API.ProductsController;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController(IProductRepository productRepository) : ControllerBase
+public class ProductsController(IGenericRepository<Product> repository) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
     {
         try
         {
-            return Ok(await productRepository.GetProductsAsync(brand, type, sort));
+            var spec = new ProducctSpecification(brand, type, sort);
+            var products = await repository.ListAsync(spec);
+            return Ok(products);
         }
-        catch (System.Exception)
+        catch (Exception)
         {
             throw;
         }
@@ -29,14 +32,14 @@ public class ProductsController(IProductRepository productRepository) : Controll
     {
         try
         {
-            var product = await productRepository.GetProductByIdAsync(id);
+            var product = await repository.GetByIdAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
             return product;
         }
-        catch (System.Exception)
+        catch (Exception)
         {
             throw;
         }
@@ -47,59 +50,73 @@ public class ProductsController(IProductRepository productRepository) : Controll
     {
         try
         {
-            productRepository.AddProduct(product);
-            if (await productRepository.SaveChangeAsync())
+            repository.Add(product);
+            if (await repository.SaveAllAsync())
             {
                 return CreatedAtAction("GetProduct", new { id = product.Id }, product);
             }
             return BadRequest("Problem occured while createting this product");
         }
-        catch (System.Exception)
+        catch (Exception)
         {
 
             throw;
         }
     }
 
+
     [HttpPut("{id:int}")]
-    public async Task<ActionResult> UpdateProduct(int id, Product product)
+    public async Task<ActionResult<Product>> UpdateProduct(int id, Product product)
     {
         try
         {
-            if (id != product.Id || !IsProductExists(id))
+            if (id != product.Id)
             {
-                return BadRequest("Cannot modified the product details");
+                return BadRequest($"Cannot modified the product details, Product ID({id}) in the URL does not match the product ID({product.Id}) in the body.");
             }
-            productRepository.UpdateProduct(product);
-            await productRepository.SaveChangeAsync();
-
-            if (await productRepository.SaveChangeAsync())
+            if (!repository.Exists(id))
             {
-                return NoContent();
+                return NotFound($"Product does not exist with ID: {id}");
+            }
+            repository.Update(product);
+            if (await repository.SaveAllAsync())
+            {
+                return Content("Product updated successfully");
             }
             return BadRequest("Cannot modified the product details");
         }
-        catch (Exception)
+        // catch (DbUpdateConcurrencyException ex)
+        // {
+        //     Console.WriteLine($"Concurrency error: {ex.Message}");
+        //     return Conflict("A concurrency issue occurred while updating the product.");
+        // }
+        // catch (DbUpdateException ex)
+        // {
+        //     Console.WriteLine($"Database error: {ex.Message}");
+        //     return StatusCode(500, "Database error occurred. Please try again.");
+        // }
+        catch (Exception ex)
         {
-            throw;
+            Console.WriteLine($"Error updating product: {ex.Message}");
+            return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
         try
         {
-            var product = await productRepository.GetProductByIdAsync(id);
+            var product = await repository.GetByIdAsync(id);
             if (product == null)
             {
-                return NotFound("Product does not exist");
+                return NotFound($"Product does not exist with ID : {id}");
             }
-            productRepository.DeleteProduct(product);
-            if (await productRepository.SaveChangeAsync())
+            repository.Remove(product);
+            if (await repository.SaveAllAsync())
             {
                 return Content("Product deleted successfully");
-                // return NoContent();
             }
             return BadRequest("Cannot delete the product");
         }
@@ -112,37 +129,43 @@ public class ProductsController(IProductRepository productRepository) : Controll
 
 
 
+    #region Patch Method
     [HttpPatch("{id:int}")]
     public async Task<IActionResult> PatchProduct(int id, Product product)
     {
         try
         {
-            if (id != product.Id || !productRepository.IsProductExists(id))
+            if (id != product.Id)
             {
-                return BadRequest("Cannot modified the product details");
+                return BadRequest($"Product ID({id}) in the URL does not match the product ID({product.Id}) in the body.");
             }
-            productRepository.UpdateProduct(product);
-            if (await productRepository.SaveChangeAsync())
+            if (!repository.Exists(id))
             {
-                return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+                return NotFound($"Product with ID({id}) was not found.");
             }
-            return BadRequest("Cannot modified the product details");
+            repository.Update(product);
+            if (await repository.SaveAllAsync())
+            {
+                return Content("Product details updated successfully");
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while updating the product.");
         }
-        catch (System.Exception)
+        catch (Exception ex)
         {
-            throw;
+            return StatusCode(StatusCodes.Status500InternalServerError, $"An unexpected error occurred: {ex.Message}");
         }
     }
-
+    #endregion
 
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
     {
         try
         {
-            return Ok(await productRepository.GetBrandsAsync());
+            var spec = new BrandListSpecification();
+            return Ok(await repository.ListAsync(spec));
         }
-        catch (System.Exception)
+        catch (Exception)
         {
             throw;
         }
@@ -153,9 +176,10 @@ public class ProductsController(IProductRepository productRepository) : Controll
     {
         try
         {
-            return Ok(await productRepository.GetTypesAsync());
+            var spec = new TypeListSpecification();
+            return Ok(await repository.ListAsync(spec));
         }
-        catch (System.Exception)
+        catch (Exception)
         {
             throw;
         }
@@ -165,7 +189,7 @@ public class ProductsController(IProductRepository productRepository) : Controll
     {
         try
         {
-            return productRepository.IsProductExists(id);
+            return repository.Exists(id);
         }
         catch (Exception)
         {

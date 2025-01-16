@@ -69,17 +69,6 @@ public class ProductRepository(StoreContext context) : IProductRepository
         }
     }
 
-    public async Task<IEnumerable> GetProductByNameAsync(string name)
-    {
-        try
-        {
-            return await context.Products.Where(x => x.Name == name).ToListAsync();
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
-    }
 
     public async Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string? type, string? sort)
     {
@@ -94,40 +83,6 @@ public class ProductRepository(StoreContext context) : IProductRepository
             {
                 query = query.Where(x => x.Type == type);
             }
-            // if (!string.IsNullOrWhiteSpace(sort))
-            // {
-            //     switch (sort.ToLower())
-            //     {
-            //         case "priceasc":
-            //             query = query.OrderBy(x => x.Price);
-            //             break;
-            //         case "pricedesc":
-            //             query = query.OrderByDescending(x => x.Price);
-            //             break;
-            //         case "nameasc":
-            //             query = query.OrderBy(x => x.Name);
-            //             break;
-            //         case "namedesc":
-            //             query = query.OrderByDescending(x => x.Name);
-            //             break;
-            //         case "brandasc":
-            //             query = query.OrderBy(x => x.Brand);
-            //             break;
-            //         case "branddesc":
-            //             query = query.OrderByDescending(x => x.Brand);
-            //             break;
-            //         case "typeasc":
-            //             query = query.OrderBy(x => x.Type);
-            //             break;
-            //         case "typedesc":
-            //             query = query.OrderByDescending(x => x.Type);
-            //             break;
-            //         default:
-            //             break;
-            //     }
-
-            // }
-
             query = sort switch
             {
                 "priceasc" => query.OrderBy(x => x.Price),
