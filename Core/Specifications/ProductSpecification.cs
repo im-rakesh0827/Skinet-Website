@@ -3,14 +3,17 @@ using Core.Entities;
 namespace Core.Specifications;
 public class ProducctSpecification : BaseSpecification<Product>
 {
-    public ProducctSpecification(string? brand, string? type, string sort) : base(x =>
-        (string.IsNullOrWhiteSpace(brand) || x.Brand == brand) &&
-        (string.IsNullOrWhiteSpace(type) || x.Type == type)
+    public ProducctSpecification(ProductSpecParams specParams) :
+    base(x =>
+        (string.IsNullOrEmpty(specParams.Search) || x.Name.ToLower().Contains(specParams.Search)) &&
+        (specParams.Brands.Count == 0 || specParams.Brands.Contains(x.Brand)) &&
+        (specParams.Types.Count == 0 || specParams.Types.Contains(x.Type))
     )
     {
-        if (!string.IsNullOrEmpty(sort))
+        ApplyPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+        if (!string.IsNullOrEmpty(specParams.sort))
         {
-            switch (sort)
+            switch (specParams.sort)
             {
                 case "priceAsc":
                     AddOrderBy(p => p.Price);

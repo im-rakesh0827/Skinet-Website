@@ -1,3 +1,5 @@
+using API.Controllers;
+using API.RequestHelpers;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
@@ -9,16 +11,15 @@ namespace API.ProductsController;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProductsController(IGenericRepository<Product> repository) : ControllerBase
+public class ProductsController(IGenericRepository<Product> repository) : BaseApiController
 {
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(string? brand, string? type, string? sort)
+    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery] ProductSpecParams specParams)
     {
         try
         {
-            var spec = new ProducctSpecification(brand, type, sort);
-            var products = await repository.ListAsync(spec);
-            return Ok(products);
+            var spec = new ProducctSpecification(specParams);
+            return await CreatePageResult(repository, spec, specParams.PageIndex, specParams.PageSize);
         }
         catch (Exception)
         {
@@ -85,16 +86,6 @@ public class ProductsController(IGenericRepository<Product> repository) : Contro
             }
             return BadRequest("Cannot modified the product details");
         }
-        // catch (DbUpdateConcurrencyException ex)
-        // {
-        //     Console.WriteLine($"Concurrency error: {ex.Message}");
-        //     return Conflict("A concurrency issue occurred while updating the product.");
-        // }
-        // catch (DbUpdateException ex)
-        // {
-        //     Console.WriteLine($"Database error: {ex.Message}");
-        //     return StatusCode(500, "Database error occurred. Please try again.");
-        // }
         catch (Exception ex)
         {
             Console.WriteLine($"Error updating product: {ex.Message}");
