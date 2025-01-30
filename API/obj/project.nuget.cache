@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YRKgDi6lzGP2N6m8C94yVFk7fead635sFACsn1PKBM8zWrJv/loNJHbmKrfwMeHUQdy3Pr8Zl7Sbi/sPXoMLWg==",
+  "dgSpecHash": "LNvCK0K7Fz/4Px1nbwU7jcQpPzD14sBxs7kTInMtUxHdnSPU+WHDpkP+IYPV5aUVu+HQmtOx2k6ny4Cf0aXn6A==",
   "success": true,
   "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/API/API.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.design/9.0.0/microsoft.entityframeworkcore.design.9.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.relational/9.0.0/microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.sqlserver/9.0.0/microsoft.entityframeworkcore.sqlserver.9.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.tools/9.0.0/microsoft.entityframeworkcore.tools.9.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.0/microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.caching.memory/9.0.0/microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
