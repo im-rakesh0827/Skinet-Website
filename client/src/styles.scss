@@ -3,24 +3,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-$customTheme:mat.define-theme();
+$customTheme: mat.define-theme();
 @include mat.core;
 
-.custom-theme{
-    .mdc-button, .mdc-raised-button, .mdc-outlined-button, .mdc-icon-button, .mdc-fab, .mdc-stroked-button{
+.custom-theme {
+
+    .mdc-button,
+    .mdc-raised-button,
+    .mdc-outlined-button,
+    .mdc-icon-button,
+    .mdc-fab,
+    .mdc-stroked-button {
         // @include mat.button-theme($customTheme);
         @apply rounded-md;
     }
 }
-.container{
+
+.container {
     @apply mx-auto max-w-screen-2xl;
 }
 
-.text-primary{
+.text-primary {
     color: #7d00fa;
 
 }
 
-button.match-input-height{
-    height: var(--mat-form-field-container-height)!important;
+button.match-input-height {
+    height: var(--mat-form-field-container-height) !important;
+}
+
+.mdc-notched-outline__notch {
+    border-right-style: none !important;
 }

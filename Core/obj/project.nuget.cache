@@ -1,8 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "hfK7ZBGVbcDx4/FN+OpiPzDZSqmBxmdkDVNN2HQoNzQzhiYih31UCPcFxXugLmoP6PmgJVDKbOuwEI/7Wc1viA==",
+  "dgSpecHash": "4h8613H+1reD8KzqhNF7j7MIAS92HXYLay4NPgJ3VTA02KcOC0+dBANyijAyPvVthRJeHM/vqOIqurjFr9tvFA==",
   "success": true,
   "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/ECommerce-Website/skinet/Core/Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore/8.0.4/microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.4/microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.entityframeworkcore.analyzers/8.0.4/microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.caching.abstractions/8.0.0/microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.caching.memory/8.0.0/microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

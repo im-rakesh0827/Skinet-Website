@@ -57,6 +57,8 @@ export class ShopComponent implements OnInit{
     this.getProducts();
   }
 
+
+
   getProducts(){
     this.shopService.getProducts(this.shopParams).subscribe({
       next:response => this.products = response,
