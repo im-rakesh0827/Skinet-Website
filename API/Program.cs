@@ -44,7 +44,7 @@ try
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<StoreContext>();
-    // await context.Database.MigrateAsync();
+    //await context.Database.MigrateAsync();
     await StoreContextSeed.SeedAsync(context);
 }
 catch (Exception ex)

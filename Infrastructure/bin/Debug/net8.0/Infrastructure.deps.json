@@ -566,7 +566,10 @@
           "Microsoft.EntityFrameworkCore": "8.0.4"
         },
         "runtime": {
-          "Core.dll": {}
+          "Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
